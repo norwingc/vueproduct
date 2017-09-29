@@ -8350,8 +8350,14 @@ button.close {
   }
 }
 
-body {
-  margin: 0;
-  padding: 0;
+@media (min-width: 768px) {
+  .form {
+    margin: 0 auto;
+    width: 60%;
+  }
+}
+
+.form__error {
+  color: red;
 }
 

@@ -9,10 +9,6 @@
     </head>
     <body>
        <div id="root"></div>
-
-       <div>
-           <button class="btn btn-info" id="prueba">Probando</button>
-       </div>
     </body>
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </html>
