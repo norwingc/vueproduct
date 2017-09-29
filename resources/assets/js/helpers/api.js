@@ -11,3 +11,13 @@ export function post(url, data){
         }
     })
 }
+
+export function get(url){
+    return axios({
+        method: 'GET',
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${Auth.state.api_token}`
+        }
+    })
+}

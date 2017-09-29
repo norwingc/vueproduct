@@ -8361,3 +8361,7 @@ button.close {
   color: red;
 }
 
+a {
+  cursor: pointer;
+}
+
