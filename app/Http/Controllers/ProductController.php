@@ -36,4 +36,18 @@ class ProductController extends Controller
     {
        return Product::with('category')->find($product->id);
     }
+
+    /**
+     * [destroy description]
+     * @param  Product $product [description]
+     * @return [type]           [description]
+     */
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product delted'
+        ]);
+    }
 }

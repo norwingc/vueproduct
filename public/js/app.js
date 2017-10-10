@@ -1669,7 +1669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         logout: function logout() {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["b" /* post */])('api/logout').then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["c" /* post */])('api/logout').then(function (res) {
                 if (res.data.done) {
                     __WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a" /* default */].remove();
                     Flash.setSuccess('You have successfully logged out!');
@@ -1728,7 +1728,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.isProcessing = true;
             this.error = {};
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/api/login', this.form).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* post */])('/api/login', this.form).then(function (res) {
                 if (res.data.authenticated) {
                     __WEBPACK_IMPORTED_MODULE_1__helpers_auth__["a" /* default */].set(res.data.api_token, res.data.user_id);
                     _this.$router.push('/');
@@ -1798,7 +1798,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.isProcessing = true;
             this.error = {};
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/api/register', this.form).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* post */])('/api/register', this.form).then(function (res) {
                 if (res.data.registered) {
                     _this.$router.push('/login');
                 }
@@ -1818,6 +1818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_auth__ = __webpack_require__("./resources/assets/js/helpers/auth.js");
 //
 //
 //
@@ -1846,13 +1847,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            products: {}
+            products: {},
+            authState: __WEBPACK_IMPORTED_MODULE_1__helpers_auth__["a" /* default */].state
         };
     },
     created: function created() {
@@ -1861,13 +1864,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         remove: function remove(product) {
-            alert('remove: ' + product.id);
-        },
-        getProducts: function getProducts() {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('api/product').then(function (res) {
-                _this.products = res.data.products;
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* del */])('api/product/' + product.id).then(function (res) {
+                _this.getProducts();
+                console.log(res.data);
+            });
+        },
+        getProducts: function getProducts() {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* get */])('api/product').then(function (res) {
+                _this2.products = res.data.products;
             });
         }
     }
@@ -1881,25 +1889,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_auth__ = __webpack_require__("./resources/assets/js/helpers/auth.js");
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            product: null
+            product: '',
+            authState: __WEBPACK_IMPORTED_MODULE_1__helpers_auth__["a" /* default */].state
         };
     },
     created: function created() {
-        var _this = this;
+        this.getProduct();
+    },
 
-        Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/api/product/' + this.$route.params.id).then(function (res) {
-            _this.product = res.data;
-        });
+    methods: {
+        getProduct: function getProduct() {
+            var _this = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* get */])('/api/product/' + this.$route.params.id).then(function (res) {
+                _this.product = res.data;
+            });
+        },
+        remove: function remove(product) {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* del */])('api/product/' + product.id).then(function (res) {
+                _this2.$router.push('/');
+            });
+        }
     }
 });
 
@@ -15148,7 +15181,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_vm._v(_vm._s(_vm.product))])
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", { staticClass: "titul" }, [_vm._v(_vm._s(_vm.product.name))]),
+    _vm._v(" "),
+    _c("p", [
+      _c("b", [_vm._v("Description: ")]),
+      _vm._v(" "),
+      _c("small", [_vm._v(_vm._s(_vm.product.description))])
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _c("b", [_vm._v("Stock:")]),
+      _vm._v(" "),
+      _c("small", [_vm._v(_vm._s(_vm.product.stock))])
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _c("b", [_vm._v("Category:")]),
+      _vm._v(" "),
+      _c("small", [_vm._v(_vm._s(_vm.product.category.name))])
+    ]),
+    _vm._v(" "),
+    _vm.authState.api_token && _vm.authState.user_id === _vm.product.user_id
+      ? _c("div", [
+          _c("button", { staticClass: "btn btn-info" }, [_vm._v("Edit")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  _vm.remove(_vm.product)
+                }
+              }
+            },
+            [_vm._v("Delete")]
+          )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -15181,7 +15253,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.stock))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.descroption))]),
+            _c("td", [_vm._v(_vm._s(product.description))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.category.name))]),
             _vm._v(" "),
@@ -15197,18 +15269,21 @@ var render = function() {
                   [_vm._v("Show")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    on: {
-                      click: function($event) {
-                        _vm.remove(product)
-                      }
-                    }
-                  },
-                  [_vm._v("Delete")]
-                )
+                _vm.authState.api_token &&
+                _vm.authState.user_id === product.user_id
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            _vm.remove(product)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -28193,8 +28268,9 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
+/* harmony export (immutable) */ __webpack_exports__["c"] = post;
+/* harmony export (immutable) */ __webpack_exports__["b"] = get;
+/* harmony export (immutable) */ __webpack_exports__["a"] = del;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth__ = __webpack_require__("./resources/assets/js/helpers/auth.js");
@@ -28215,6 +28291,16 @@ function post(url, data) {
 function get(url) {
     return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
         method: 'GET',
+        url: url,
+        headers: {
+            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_1__auth__["a" /* default */].state.api_token
+        }
+    });
+}
+
+function del(url, id) {
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'DELETE',
         url: url,
         headers: {
             'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_1__auth__["a" /* default */].state.api_token

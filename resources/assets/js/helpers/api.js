@@ -21,3 +21,13 @@ export function get(url){
         }
     })
 }
+
+export function del(url, id) {
+    return axios({
+        method: 'DELETE',
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${Auth.state.api_token}`
+        }
+    })
+}

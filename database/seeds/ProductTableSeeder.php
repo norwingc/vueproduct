@@ -31,6 +31,7 @@ class ProductTableSeeder extends Seeder
                 'stock'       => $faker->randomDigit(3),
                 'description' => $faker->paragraph(1),
                 'category_id' => $faker->randomDigit(2),
+                'user_id'     =>$faker->randomDigit(2)
             ]);
         }
     }

@@ -19,7 +19,9 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->string('description');
             $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
