@@ -1,23 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Login from '../views/auth/login.vue'
-import Register from '../views/auth/register.vue'
-import ProductIndex from '../views/product/index.vue'
-import ProductShow from '../views/product/show.vue'
-import ProductCreate from '../views/product/create.vue'
-import CategoryCreate from '../views/category/create.vue'
-
 Vue.use(VueRouter)
 
 const router =  new VueRouter({
     routes: [
-        {path: '/', component: ProductIndex},
-        {path: '/login', component: Login},
-        {path: '/register', component: Register},
-        {path: '/product/show/:id', component: ProductShow},
-        {path: '/product/create', component: ProductCreate},
-        {path: '/category/create', component: CategoryCreate},
+        {path: '/', component: require('../views/product/index.vue')},
+        {path: '/login', component: require('../views/auth/login.vue')},
+        {path: '/register', component: require('../views/auth/register.vue')},
+        {path: '/product/create', component: require('../views/product/create.vue')},
+        {path: '/product/:id', component: require('../views/product/show.vue')},
+        {path: '/category/create', component: require('../views/category/create.vue')},
     ]
 })
 

@@ -8350,6 +8350,10 @@ button.close {
   }
 }
 
+body {
+  padding-top: 70px;
+}
+
 @media (min-width: 768px) {
   .form {
     margin: 0 auto;

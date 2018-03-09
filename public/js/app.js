@@ -15450,7 +15450,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-info",
-                    attrs: { to: "/product/show/" + product.id }
+                    attrs: { to: "/product/" + product.id }
                   },
                   [_vm._v("Show")]
                 ),
@@ -16074,7 +16074,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "navbar navbar-default" }, [
+  return _c("nav", { staticClass: "navbar navbar-default navbar-fixed-top" }, [
     _c("div", { staticClass: "container-fluid" }, [
       _c(
         "div",
@@ -29866,32 +29866,13 @@ function del(url, id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_auth_login_vue__ = __webpack_require__("./resources/assets/js/views/auth/login.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_auth_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_auth_login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_auth_register_vue__ = __webpack_require__("./resources/assets/js/views/auth/register.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_auth_register_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_auth_register_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_product_index_vue__ = __webpack_require__("./resources/assets/js/views/product/index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_product_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_product_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_product_show_vue__ = __webpack_require__("./resources/assets/js/views/product/show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_product_show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_product_show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_product_create_vue__ = __webpack_require__("./resources/assets/js/views/product/create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_product_create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_product_create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_category_create_vue__ = __webpack_require__("./resources/assets/js/views/category/create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_category_create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__views_category_create_vue__);
-
-
-
-
-
-
-
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_4__views_product_index_vue___default.a }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__views_auth_login_vue___default.a }, { path: '/register', component: __WEBPACK_IMPORTED_MODULE_3__views_auth_register_vue___default.a }, { path: '/product/show/:id', component: __WEBPACK_IMPORTED_MODULE_5__views_product_show_vue___default.a }, { path: '/product/create', component: __WEBPACK_IMPORTED_MODULE_6__views_product_create_vue___default.a }, { path: '/category/create', component: __WEBPACK_IMPORTED_MODULE_7__views_category_create_vue___default.a }]
+    routes: [{ path: '/', component: __webpack_require__("./resources/assets/js/views/product/index.vue") }, { path: '/login', component: __webpack_require__("./resources/assets/js/views/auth/login.vue") }, { path: '/register', component: __webpack_require__("./resources/assets/js/views/auth/register.vue") }, { path: '/product/create', component: __webpack_require__("./resources/assets/js/views/product/create.vue") }, { path: '/product/:id', component: __webpack_require__("./resources/assets/js/views/product/show.vue") }, { path: '/category/create', component: __webpack_require__("./resources/assets/js/views/category/create.vue") }]
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (router);

@@ -8,6 +8,8 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+body { padding-top: 70px; }
+
 .form {
     @media (min-width:768px) {
         margin: 0 auto;
