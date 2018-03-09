@@ -5,6 +5,8 @@ import Login from '../views/auth/login.vue'
 import Register from '../views/auth/register.vue'
 import ProductIndex from '../views/product/index.vue'
 import ProductShow from '../views/product/show.vue'
+import ProductCreate from '../views/product/create.vue'
+import CategoryCreate from '../views/category/create.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,9 @@ const router =  new VueRouter({
         {path: '/', component: ProductIndex},
         {path: '/login', component: Login},
         {path: '/register', component: Register},
-        {path: '/product/:id', component: ProductShow}
+        {path: '/product/show/:id', component: ProductShow},
+        {path: '/product/create', component: ProductCreate},
+        {path: '/category/create', component: CategoryCreate},
     ]
 })
 

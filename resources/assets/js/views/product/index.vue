@@ -17,7 +17,7 @@
                     <td>{{ product.description }}</td>
                     <td>{{ product.category.name }}</td>
                     <td>
-                        <router-link class="btn btn-info" :to="`/product/${product.id}`">Show</router-link>
+                        <router-link class="btn btn-info" :to="`/product/show/${product.id}`">Show</router-link>
                         <button class="btn btn-danger" @click="remove(product)" v-if="authState.api_token && authState.user_id === product.user_id">Delete</button>
                     </td>
                 </tr>

@@ -18,7 +18,12 @@
     export default{
         data(){
             return{
-                product: '',
+                product: {
+                    name: '',
+                    description: '',
+                    stock: 0,
+                    category:{}
+                },
                 authState: Auth.state
             }
         },
