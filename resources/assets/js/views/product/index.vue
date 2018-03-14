@@ -44,7 +44,6 @@
             remove(product){
                 del('api/product/'+product.id).then((res) =>{
                     this.getProducts()
-                    console.log(res.data)
                 });
             },
             getProducts(){

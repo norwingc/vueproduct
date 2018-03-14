@@ -9,6 +9,8 @@ class Category extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = ['name'];
+
     public function product()
     {
        return $this->hasMany(\App\Product::class);

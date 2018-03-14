@@ -5,7 +5,7 @@
         <form class="form">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Full Name" v-model="product.name">
+                <input type="text" class="form-control" placeholder="Product Name" v-model="product.name">
                 <small class="form__error" v-if="error.name">{{ error.name[0]  }}</small>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
                 this.isProcessing = true
                 this.error = {}
                 post('api/product', this.product).then((res)=>{
-                    if(res.data.saved == true){
+                    if(res.data.saved){
                         this.$router.push('/Product/show/'+res.data.product.id)
                     }
                 }).catch((err) =>{
